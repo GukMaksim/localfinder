@@ -1,16 +1,20 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
+import { analyzeQuery } from './gemini.js';
 
 // Створюємо екземпляр програми Express
 const app = express();
-
-// Визначаємо порт, на якому буде слухати сервер
-const port = process.env.PORT || 3000;
+app.use(cors());
+app.use(express.json());
 
 // Обробник для головного маршруту (/)
 app.get('/', (req, res) => {
   res.send('Привіт від бекенду!');
 });
+
+// Визначаємо порт, на якому буде слухати сервер
+const port = process.env.PORT || 3000;
 
 // Запускаємо сервер і починаємо прослуховувати вказаний порт
 app.listen(port, () => {
