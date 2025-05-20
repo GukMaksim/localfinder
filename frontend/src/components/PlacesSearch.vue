@@ -98,7 +98,7 @@
                 </div>
                 <p class="text-sm">{{ review.text }}</p>
                 <p class="text-xs text-gray-500 mt-2">
-                  {{ new Date(review.time).toLocaleDateString('uk-UA') }}
+                  {{ review.time }}
                 </p>
               </div>
             </div>

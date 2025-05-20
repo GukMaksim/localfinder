@@ -28,7 +28,7 @@ async function searchPlaces(query, maxResults = 5) {
       otherArgs: {
         headers: {
           "X-Goog-FieldMask":
-            "places.displayName.text,places.formattedAddress,places.nationalPhoneNumber,places.websiteUri,places.rating,places.userRatingCount,places.currentOpeningHours.weekdayDescriptions",
+            "places.displayName.text,places.formattedAddress,places.nationalPhoneNumber,places.websiteUri,places.rating,places.userRatingCount,places.currentOpeningHours.weekdayDescriptions,places.reviews",
         },
       },
     });
@@ -48,7 +48,12 @@ async function searchPlaces(query, maxResults = 5) {
       rating: place.rating || 0,
       userRatingCount: place.userRatingCount || 0,
       openingHours: place.currentOpeningHours?.weekdayDescriptions || [],
-      reviews: [],
+      reviews: (place.reviews || []).slice(0, 5).map((review) => ({
+        author: review?.authorAttribution?.displayName || 'Анонім',
+        rating: review?.rating || 0,
+        text: review?.text?.text || '',
+        time: review?.relativePublishTimeDescription || '',
+      })),
     }));
 
     console.log("Оброблені результати:", JSON.stringify(places, null, 2));
