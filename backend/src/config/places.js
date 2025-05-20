@@ -17,7 +17,6 @@ async function searchPlaces(query, maxResults = 5) {
     // Формуємо запит
     const request = {
       textQuery: query,
-      // fields: ["displayName", "location", "businessStatus"],
       languageCode: 'uk',
       maxResultCount: maxResults,
     };
@@ -29,7 +28,7 @@ async function searchPlaces(query, maxResults = 5) {
       otherArgs: {
         headers: {
           "X-Goog-FieldMask":
-            "places.displayName.text,places.formattedAddress,places.nationalPhoneNumber,places.websiteUri,places.rating,places.currentOpeningHours.weekdayDescriptions",
+            "places.displayName.text,places.formattedAddress,places.nationalPhoneNumber,places.websiteUri,places.rating,places.userRatingCount,places.currentOpeningHours.weekdayDescriptions",
         },
       },
     });
@@ -44,10 +43,11 @@ async function searchPlaces(query, maxResults = 5) {
     const places = response.places.map((place) => ({
       name: place.displayName.text,
       address: place.formattedAddress,
-      phone: place.nationalPhoneNumber,
-      website: place.websiteUri,
-      rating: place.rating,
-      openingHours: place.currentOpeningHours.weekdayDescriptions,
+      phone: place.nationalPhoneNumber || '',
+      website: place.websiteUri || '',
+      rating: place.rating || 0,
+      userRatingCount: place.userRatingCount || 0,
+      openingHours: place.currentOpeningHours?.weekdayDescriptions || [],
       reviews: [],
     }));
 

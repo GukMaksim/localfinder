@@ -38,10 +38,25 @@
           <h2 class="card-title">{{ place.name }}</h2>
 
           <div class="flex items-center gap-2 mb-2">
-            <div class="rating rating-sm">
-              <input v-for="n in 5" :key="n" type="radio" :class="'mask mask-star-2'"
-                :checked="n <= Math.round(place.rating)" disabled />
+            <div class="flex">
+              <template v-for="n in 5" :key="n">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="w-5 h-5"
+                  :class="n <= Math.round(place.rating) ? 'text-yellow-400' : 'text-gray-300'"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.388 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.388-2.46a1 1 0 00-1.175 0l-3.388 2.46c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.045 9.394c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z" />
+                </svg>
+              </template>
             </div>
+            <span v-if="place.userRatingCount" class="text-sm text-gray-500">
+              ({{ place.userRatingCount }} {{ formatRatingCount(place.userRatingCount) }})
+            </span>
+            <span class="text-sm text-gray-500">
+              {{ place.rating ? place.rating.toFixed(1) : '—' }}/5
+            </span>
           </div>
 
           <div class="space-y-2">
@@ -107,6 +122,26 @@ const resultCount = ref('1')
 const places = ref([])
 const isLoading = ref(false)
 const error = ref('')
+
+// Функція для форматування кількості відгуків
+const formatRatingCount = (count) => {
+  const lastDigit = count % 10
+  const lastTwoDigits = count % 100
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
+    return 'відгуків'
+  }
+
+  if (lastDigit === 1) {
+    return 'відгук'
+  }
+
+  if (lastDigit >= 2 && lastDigit <= 4) {
+    return 'відгуки'
+  }
+
+  return 'відгуків'
+}
 
 const searchPlaces = async () => {
   if (!searchQuery.value) {
