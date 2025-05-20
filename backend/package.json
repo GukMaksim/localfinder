@@ -1,19 +1,25 @@
 {
-  "name": "backend",
+  "name": "localfinder-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Backend for LocalFinder application",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@googlemaps/places": "^2.0.1",
     "axios": "^1.9.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^5.1.0"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }

@@ -1,7 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { analyzeQuery } from './gemini.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { main } from './services/search.js'; // Імпортуємо функцію main з файлу main.js
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 // Створюємо екземпляр програми Express
 const app = express();
