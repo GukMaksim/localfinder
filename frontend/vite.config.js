@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'url'
-import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,14 +22,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: true,
-    rollupOptions: {
-      input: {
-        main: fileURLToPath(new URL('./index.html', import.meta.url))
-      }
-    }
-  },
-  optimizeDeps: {
-    include: ['vue', 'vue-router', 'pinia']
+    minify: true
   }
 })
