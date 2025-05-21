@@ -39,7 +39,7 @@
 
   </div>
   <div>
-    <div v-if="places.length" class="places-list">
+    <div v-if="places && places.length" class="places-list">
       <div v-for="place in places" :key="place.name" class="card bg-base-100 shadow-xl mb-6">
         <div class="card-body p-0">
           <div class="grid grid-cols-2 h-[600px]">
