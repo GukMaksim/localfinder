@@ -15,5 +15,5 @@
 </template>
 
 <script setup>
-import PlacesSearch from './components/PlacesSearch.vue'
+import PlacesSearch from '@/components/PlacesSearch.vue'
 </script>
