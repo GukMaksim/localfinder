@@ -66,8 +66,5 @@ MIT
 ## 👥 Developers
 - Guk Maksym  - Lead Developer
 
-## 🤝 Contributing to the Project
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on the contribution process.
-
 ## 📞 Support
 If you have any questions or issues, please create an issue in the project repository.
