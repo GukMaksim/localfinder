@@ -21,7 +21,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://localfinder-backend.onrender.com/',
+        target: process.env.VITE_API_URL || 'http://localhost:3000',
         changeOrigin: true,
         secure: false
       }
