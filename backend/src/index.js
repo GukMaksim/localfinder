@@ -13,12 +13,17 @@ const app = express();
 
 // Налаштування CORS
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://localfinder.vercel.app'],
   methods: ['GET', 'POST'],
   credentials: true
 }));
 
 app.use(express.json());
+
+// Додайте цей маршрут
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Бекенд працює' });
+});
 
 // Роути
 app.use('/api/places', placesRouter);
