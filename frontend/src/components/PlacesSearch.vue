@@ -171,7 +171,10 @@ const searchPlaces = async () => {
   error.value = ''
 
   try {
-    const response = await axios.get('/api/places/search', {
+    // Використовуйте змінну середовища для базового URL бекенду
+    const API_BASE_URL = import.meta.env.VITE_API_URL; 
+
+    const response = await axios.get(`${API_BASE_URL}/api/places/search`, {
       params: {
         query: searchQuery.value,
         maxResults: parseInt(resultCount.value)
